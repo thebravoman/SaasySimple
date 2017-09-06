@@ -15,7 +15,7 @@ module SaasySimple
         subscription = SaasySimple.subscription(current_user)
         redirect_to subscription['customerUrl']
       else
-        redirect_to SaasySimple.signup(current_user)
+        redirect_to SaasySimple.signup(SaasySimple.config.url,current_user)
       end
     end
 

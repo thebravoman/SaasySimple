@@ -59,10 +59,6 @@ module SaasySimple
     s
   end
 
-  def self.signup(user)
-    self.signup(SaasySimple.config.url, user)
-  end
-
   def self.signup(url, user) 
     "#{url}?referrer=#{user.id}"
   end
