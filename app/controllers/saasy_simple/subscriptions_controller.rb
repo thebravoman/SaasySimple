@@ -3,10 +3,13 @@ require 'open-uri'
 
 module SaasySimple
   class SubscriptionsController < ApplicationController
+
+    before_action only: [:activate, :deactivate] do 
+      check_secure_call
+    end
+
     def activate
-      if Digest::MD5.hexdigest(params["security_data"] + SaasySimple.config.secret) == params["security_hash"]
-        SaasySimple.config.model.activate( params['token'], params['id'] )
-      end
+      SaasySimple.config.model.activate( params['token'], params['id'] )
     end
 
     def billing
@@ -20,9 +23,7 @@ module SaasySimple
     end
 
     def deactivate
-      if Digest::MD5.hexdigest(params["security_data"] + SaasySimple.config.secret) == params["security_hash"]
-        SaasySimple.config.model.deactivate( params['token'], params['id'] )
-      end
+      SaasySimple.config.model.deactivate( params['token'], params['id'] )
     end
   end
 end
