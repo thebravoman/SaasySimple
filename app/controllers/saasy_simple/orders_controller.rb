@@ -11,5 +11,6 @@ module SaasySimple
     def complete
        SaasySimple.config.model.order_complete( params['token'], params['id'] )
     end
-
+    
+  end
 end
