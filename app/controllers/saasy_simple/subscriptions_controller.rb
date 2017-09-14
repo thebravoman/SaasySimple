@@ -2,7 +2,7 @@ require 'digest/md5'
 require 'open-uri'
 
 module SaasySimple
-  class SubscriptionsController < ApplicationController
+  class SubscriptionsController < SaasyController
 
     before_action only: [:activate, :deactivate] do 
       check_secure_call
