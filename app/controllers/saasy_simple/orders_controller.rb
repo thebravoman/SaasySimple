@@ -9,7 +9,7 @@ module SaasySimple
     end
 
     def complete
-       SaasySimple.config.model.order_complete( params['token'], params['id'] )
+       SaasySimple.config.model.order_complete( params['token'], params['id'], params )
     end
     
   end

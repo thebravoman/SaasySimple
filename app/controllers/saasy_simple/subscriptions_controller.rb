@@ -9,7 +9,7 @@ module SaasySimple
     end
 
     def activate
-      SaasySimple.config.model.activate( params['token'], params['id'] )
+      SaasySimple.config.model.activate( params['token'], params['id'], params )
     end
 
     def billing
@@ -23,7 +23,7 @@ module SaasySimple
     end
 
     def deactivate
-      SaasySimple.config.model.deactivate( params['token'], params['id'] )
+      SaasySimple.config.model.deactivate( params['token'], params['id'], params )
     end
   end
 end
