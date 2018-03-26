@@ -4,12 +4,16 @@ require 'open-uri'
 module SaasySimple
   class SubscriptionsController < SaasyController
 
-    before_action only: [:activate, :deactivate] do 
+    before_action only: [:activate, :deactivate, :change] do 
       check_secure_call
     end
 
     def activate
       SaasySimple.config.model.activate( params['token'], params['id'], params )
+    end
+
+    def change
+      SaasySimple.config.model.change_subscription(params['token'], params['id'], params)
     end
 
     def billing
