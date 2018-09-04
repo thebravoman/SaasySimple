@@ -15,10 +15,10 @@ module SaasySimple
     s = {}
     if user.status == 'active'
       url = "https://api.fastspring.com/company/" +
-            SaasySimple.config.store_id +
-            "/subscription/" + user.token +
-            "?user="         + SaasySimple.config.username +
-            "&pass="         + SaasySimple.config.password
+        SaasySimple.config.store_id +
+        "/subscription/" + user.token +
+        "?user="         + SaasySimple.config.username +
+        "&pass="         + SaasySimple.config.password
       uri              = URI.parse(url)
       http             = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl     = true
@@ -39,10 +39,10 @@ module SaasySimple
     s = {}
     if user.status == 'active'
       url = "https://api.fastspring.com/company/" +
-            SaasySimple.config.store_id +
-            "/subscription/" + user.token +
-            "?user="         + SaasySimple.config.username +
-            "&pass="         + SaasySimple.config.password
+        SaasySimple.config.store_id +
+        "/subscription/" + user.token +
+        "?user="         + SaasySimple.config.username +
+        "&pass="         + SaasySimple.config.password
       uri              = URI.parse(url)
       http             = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl     = true
@@ -59,8 +59,8 @@ module SaasySimple
     s
   end
 
-  def self.signup(url, user) 
-    "#{url}?referrer=#{user.id}"
+  def self.signup(url, user)
+    "#{url}?referrer=#{user.to_param}"
   end
-  
+
 end
