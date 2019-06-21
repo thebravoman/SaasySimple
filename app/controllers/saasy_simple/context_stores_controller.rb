@@ -30,11 +30,19 @@ module SaasySimple
     protected
     def check_secure_call
       body = request.body.read
-      server_encoded_secret = Base64.encode64(OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), SaasySimple.config.secret, body)).strip()
-      Rails.logger.info("server_encoded_secret: #{server_encoded_secret}")
+      server_encoded_secret1 = Base64.encode64(OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), SaasySimple.config.secret, body)).strip()
+      server_encoded_secret2 = Base64.encode64(OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), SaasySimple.config.secret, body))
+      server_encoded_secret3 = Base64.encode64(OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), SaasySimple.config.secret, body)).strip()
+      server_encoded_secret4 = Base64.encode64(OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), SaasySimple.config.secret, body))
+      
+      Rails.logger.info("server_encoded_secret1: #{server_encoded_secret1}")
+      Rails.logger.info("server_encoded_secret2: #{server_encoded_secret2}")
+      Rails.logger.info("server_encoded_secret3: #{server_encoded_secret3}")
+      Rails.logger.info("server_encoded_secret4: #{server_encoded_secret4}")
+
       Rails.logger.info("request_params_x_fs_signature: #{request.headers["X-FS-Signature"]}")
       Rails.logger.info("request.body: #{body}")
-      if server_encoded_secret != request.headers["X-FS-Signature"]
+      if server_encoded_secret1 != request.headers["X-FS-Signature"]
         render :text=>"", :status=> :unauthorized
       end
     end
