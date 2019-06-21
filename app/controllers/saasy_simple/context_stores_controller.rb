@@ -29,9 +29,13 @@ module SaasySimple
 
     protected
     def check_secure_call
-      server_encoded_secret = Base64.encode64(OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), SaasySimple.config.secret, request.body.read)).strip()
+      body = request.body.read
+      server_encoded_secret = Base64.encode64(OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), SaasySimple.config.secret, body)).strip()
+      Rails.logger.info("server_encoded_secret: #{server_encoded_secret}")
+      Rails.logger.info("request_params_x_fs_signature: #{request.params["HTTP_X_FS_SIGNATURE"]}")
+      Rails.logger.info("request.body: #{body}")
       if server_encoded_secret != request.params["HTTP_X_FS_SIGNATURE"]
-        render :text=>"", :status=>:unauthorize
+        render :text=>"", :status=> :unauthorized
       end
     end
   end
