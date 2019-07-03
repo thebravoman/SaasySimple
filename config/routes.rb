@@ -7,7 +7,7 @@ SaasySimple::Engine.routes.draw do
   post "context_stores/activate",   :controller => 'context_stores', :action => 'activate'
   get  "context_stores/billing",    :controller => 'context_stores', :action => 'billing'
   post "context_stores/deactivate", :controller => 'context_stores', :action => 'deactivate'
-  post "context_stores/change", :controller => 'context_stores', :action => 'change'
+  post "context_stores/update", :controller => 'context_stores', :action => 'update'
 
   post "orders/complete", :controller=>"orders", :action=>"complete"
   
