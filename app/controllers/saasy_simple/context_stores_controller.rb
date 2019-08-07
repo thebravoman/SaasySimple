@@ -8,17 +8,17 @@ module SaasySimple
     end
 
     def activate
-      SaasySimple.config.model.context_stores_handle_payload(@payload)
+      SaasySimple.config.model_context.context_stores_handle_payload(@payload)
       render json: {}, status: 200
     end
 
     def update
-      SaasySimple.config.model.context_stores_handle_payload(@payload)
+      SaasySimple.config.model_context.context_stores_handle_payload(@payload)
       render json: {}, status: 200
     end
 
     def deactivate
-      SaasySimple.config.model.context_stores_handle_payload(@payload)
+      SaasySimple.config.model_context.context_stores_handle_payload(@payload)
       render json: {}, status: 200
     end
 
