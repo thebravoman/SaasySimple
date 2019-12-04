@@ -1,5 +1,5 @@
 module SaasySimple
-	class SaasyController < ApplicationController
+	class SaasyController < ActionController::API
 		
 		protected
 		def check_secure_call
